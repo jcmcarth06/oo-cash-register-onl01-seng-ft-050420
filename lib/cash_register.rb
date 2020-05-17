@@ -1,11 +1,13 @@
 
 class CashRegister
   attr_accessor :total, :discount, :price, :items
+  #establishes attributes for the class
 
   def initialize(discount = 0)
     @total = 0
     @discount = discount
     @items = []
+    #ascribes variables to be accessed and applied throughout methods
   end
 
   def add_item(item, price, quantity = 1)
@@ -16,6 +18,7 @@ class CashRegister
       while counter < quantity
         @items << item
         counter += 1
+
       end
     else
       @items << item
@@ -24,8 +27,8 @@ class CashRegister
 
   def apply_discount
     if @discount > 0
-      @to_take_off = (price * discount)/100
-      @total -= @to_take_off
+      @removed = (price * discount)/100
+      @total -= @removed
       return "After the discount, the total comes to $#{total}."
     else
       return "There is no discount to apply."
