@@ -1,42 +1,30 @@
+class CashRegister  
+  attr_accessor :items, :discount, :total, :last_transaction  
 
-class CashRegister
-  attr_accessor :total, :discount, :price, :items
-  #establishes attributes for the class
-
-  def initialize(discount = 0)
-    @total = 0
-    @discount = discount
+  def initialize(discount=0)
+    @total = 0 #establishes variables for total, discount, and items to be called on throughout the class method
+    @discount_amount = discount
     @items = []
-    #ascribes variables to be accessed and applied throughout methods
-  end
+  end  
 
-  def add_item(item, price, quantity = 1)
-    @price = price
-    @total += price * quantity
-    if quantity > 1
-      counter = 0
-      while counter < quantity
-        @items << item
-        counter += 1
-
-      end
-    else
-      @items << item
+  def add_item(name, amount, quantity=1)
+    self.total += amount * quantity
+    quantity.times do
+      items << name
     end
-  end
+    self.last_transaction = amount * quantity
+  end  
 
   def apply_discount
-    if @discount > 0
-      @removed = (price * discount)/100
-      @total -= @removed
-      return "After the discount, the total comes to $#{total}."
+    if discount != 0
+      self.total = (total * ((100.0 - discount.to_f)/100)).to_i
+      "After the discount, the total comes to $#{self.total}."
     else
-      return "There is no discount to apply."
+      "There is no discount to apply."
     end
-  end
+  end  
 
   def void_last_transaction
-    @total -= @price
+    self.total = self.total - self.last_transaction
   end
-
 end
