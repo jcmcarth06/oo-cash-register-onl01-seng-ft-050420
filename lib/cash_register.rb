@@ -3,7 +3,7 @@ class CashRegister
 
   def initialize(discount=0)
     @total = 0 #establishes variables for total, discount, and items to be called on throughout the class method
-    @discount_amount = discount
+    @discount = discount
     @items = []
   end
 
